@@ -29,7 +29,7 @@ const {
 const {
     cmd,
     commands
-} = require('../plugin')
+} = require('../command')
 
 
 
