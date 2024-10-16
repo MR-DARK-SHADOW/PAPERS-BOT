@@ -25,7 +25,7 @@ const {
     runtime,
     sleep,
     fetchJson
-} = require('../library/functions')
+} = require('../lib/functions')
 const {
     cmd,
     commands
