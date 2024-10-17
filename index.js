@@ -132,44 +132,6 @@ conn.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
               }
             }
 
- conn.sendButtonMessage = async (jid, buttons, quoted, opts = {}) => {
-
-                let header;
-                if (opts?.video) {
-                    var video = await prepareWAMessageMedia({
-                        video: {
-                            url: opts && opts.video ? opts.video : ''
-                        }
-                    }, {
-                        upload: conn.waUploadToServer
-                    })
-                    header = {
-                        title: opts && opts.header ? opts.header : '',
-                        hasMediaAttachment: true,
-                        videoMessage: video.videoMessage,
-                    }
-
-                } else if (opts?.image) {
-                    var image = await prepareWAMessageMedia({
-                        image: {
-                            url: opts && opts.image ? opts.image : ''
-                        }
-                    }, {
-                        upload: conn.waUploadToServer
-                    })
-                    header = {
-                        title: opts && opts.header ? opts.header : '',
-                        hasMediaAttachment: true,
-                        imageMessage: image.imageMessage,
-                    }
-
-                } else {
-                    header = {
-                        title: opts && opts.header ? opts.header : '',
-                        hasMediaAttachment: false,
-                    }
-                }
-
 
 const events = require('./command')
 const cmdName = isCmd ? body.slice(1).trim().split(" ")[0].toLowerCase() : false;
@@ -202,11 +164,7 @@ mek.type === "stickerMessage"
 command.function(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply})
 }});
 //============================================================================ 
-if (config.ALWAYS_ONLINE === 'false') {
-                await conn.sendPresenceUpdate('unavailable')
-		}
-//============================================================================ 
-   
+
 })
 }
 app.get("/", (req, res) => {
