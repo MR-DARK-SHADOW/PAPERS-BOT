@@ -131,7 +131,7 @@ conn.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
                 return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, { quoted: quoted, ...options })
               }
             }
-conn.sendButtonMessage = async (jid, buttons, quoted, opts = {}) => {
+  conn.sendButtonMessage = async (jid, buttons, quoted, opts = {}) => {
 
                 let header;
                 if (opts?.video) {
@@ -169,6 +169,40 @@ conn.sendButtonMessage = async (jid, buttons, quoted, opts = {}) => {
                     }
                 }
 
+
+                let message = generateWAMessageFromContent(jid, {
+                    viewOnceMessage: {
+                        message: {
+                            messageContextInfo: {
+                                deviceListMetadata: {},
+                                deviceListMetadataVersion: 2,
+                            },
+                            interactiveMessage: {
+                                body: {
+                                    text: opts && opts.body ? opts.body : ''
+                                },
+                                footer: {
+                                    text: opts && opts.footer ? opts.footer : ''
+                                },
+                                header: header,
+                                nativeFlowMessage: {
+                                    buttons: buttons,
+                                    messageParamsJson: ''
+                                }
+                            }
+                        }
+                    }
+                }, {
+                    quoted: quoted
+                })
+                await conn.sendPresenceUpdate('composing', jid)
+                await sleep(1000 * 1);
+                return await conn.relayMessage(jid, message["message"], {
+                    messageId: message.key.id
+                })
+            }
+//============================================================================ 
+        
 const events = require('./command')
 const cmdName = isCmd ? body.slice(1).trim().split(" ")[0].toLowerCase() : false;
 if (isCmd) {
