@@ -3,6 +3,7 @@ default: makeWASocket,
 useMultiFileAuthState,
 DisconnectReason,
 jidNormalizedUser,
+generateWAMessageFromContent,
 getContentType,
 fetchLatestBaileysVersion,
 Browsers
