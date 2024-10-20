@@ -3,7 +3,6 @@ default: makeWASocket,
 useMultiFileAuthState,
 DisconnectReason,
 jidNormalizedUser,
-generateWAMessageFromContent,
 getContentType,
 fetchLatestBaileysVersion,
 Browsers
@@ -20,7 +19,7 @@ const axios = require('axios')
 const { File } = require('megajs')
 const prefix = '.'
 
-const ownerNumber = ['94751150234']
+const ownerNumber = ['94779415698']
 
 //===================SESSION-AUTH============================
 if (!fs.existsSync(__dirname + '/auth_info_baileys/creds.json')) {
@@ -70,9 +69,9 @@ require("./plugins/" + plugin);
 console.log('Plugins installed successful ✅')
 console.log('Bot connected to whatsapp ✅')
 
-let up = `> BOT CONNECTED`;
+let up = `Wa-BOT connected successful ✅\n\nPREFIX: ${prefix}`;
 
-conn.sendMessage(ownerNumber + "@s.whatsapp.net", { image: { url: `https://i.imgur.com/P6K7kOg.jpeg` }, caption: up })
+conn.sendMessage(ownerNumber + "@s.whatsapp.net", { image: { url: `https://telegra.ph/file/900435c6d3157c98c3c88.jpg` }, caption: up })
 
 }
 })
@@ -132,78 +131,8 @@ conn.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
                 return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, { quoted: quoted, ...options })
               }
             }
-  conn.sendButtonMessage = async (jid, buttons, quoted, opts = {}) => {
-
-                let header;
-                if (opts?.video) {
-                    var video = await prepareWAMessageMedia({
-                        video: {
-                            url: opts && opts.video ? opts.video : ''
-                        }
-                    }, {
-                        upload: conn.waUploadToServer
-                    })
-                    header = {
-                        title: opts && opts.header ? opts.header : '',
-                        hasMediaAttachment: true,
-                        videoMessage: video.videoMessage,
-                    }
-
-                } else if (opts?.image) {
-                    var image = await prepareWAMessageMedia({
-                        image: {
-                            url: opts && opts.image ? opts.image : ''
-                        }
-                    }, {
-                        upload: conn.waUploadToServer
-                    })
-                    header = {
-                        title: opts && opts.header ? opts.header : '',
-                        hasMediaAttachment: true,
-                        imageMessage: image.imageMessage,
-                    }
-
-                } else {
-                    header = {
-                        title: opts && opts.header ? opts.header : '',
-                        hasMediaAttachment: false,
-                    }
-                }
 
 
-                let message = generateWAMessageFromContent(jid, {
-                    viewOnceMessage: {
-                        message: {
-                            messageContextInfo: {
-                                deviceListMetadata: {},
-                                deviceListMetadataVersion: 2,
-                            },
-                            interactiveMessage: {
-                                body: {
-                                    text: opts && opts.body ? opts.body : ''
-                                },
-                                footer: {
-                                    text: opts && opts.footer ? opts.footer : ''
-                                },
-                                header: header,
-                                nativeFlowMessage: {
-                                    buttons: buttons,
-                                    messageParamsJson: ''
-                                }
-                            }
-                        }
-                    }
-                }, {
-                    quoted: quoted
-                })
-                await conn.sendPresenceUpdate('composing', jid)
-                await sleep(1000 * 1);
-                return await conn.relayMessage(jid, message["message"], {
-                    messageId: message.key.id
-                })
-            }
-//============================================================================ 
-        
 const events = require('./command')
 const cmdName = isCmd ? body.slice(1).trim().split(" ")[0].toLowerCase() : false;
 if (isCmd) {
@@ -235,11 +164,7 @@ mek.type === "stickerMessage"
 command.function(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply})
 }});
 //============================================================================ 
-if (config.ALWAYS_ONLINE === 'false') {
-                await conn.sendPresenceUpdate('unavailable')
-		}
-//============================================================================        
-        
+
 })
 }
 app.get("/", (req, res) => {
