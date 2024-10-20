@@ -4,6 +4,7 @@ useMultiFileAuthState,
 DisconnectReason,
 jidNormalizedUser,
 getContentType,
+generateWAMessageFromContent,
 fetchLatestBaileysVersion,
 prepareWAMessageMedia,
 Browsers
