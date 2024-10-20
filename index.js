@@ -5,6 +5,7 @@ DisconnectReason,
 jidNormalizedUser,
 getContentType,
 fetchLatestBaileysVersion,
+prepareWAMessageMedia,
 Browsers
 } = require('@whiskeysockets/baileys')
 
