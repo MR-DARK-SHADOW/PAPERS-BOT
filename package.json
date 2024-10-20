@@ -11,7 +11,7 @@
   "dependencies": {
         "@adiwajshing/keyed-db": "^0.2.4",
         "@whiskeysockets/baileys": "6.6.0", 
-        "axios": "^1.6.8",
+        "axios": "^1.2.5",
         "api-dylux": "latest",
         "@bochilteam/scraper": "^4.0.22-alpha.0",
         "cheerio": "^1.0.0-rc.12",
