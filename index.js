@@ -4,9 +4,7 @@ useMultiFileAuthState,
 DisconnectReason,
 jidNormalizedUser,
 getContentType,
-generateWAMessageFromContent,
 fetchLatestBaileysVersion,
-prepareWAMessageMedia,
 Browsers
 } = require('@whiskeysockets/baileys')
 
@@ -21,7 +19,7 @@ const axios = require('axios')
 const { File } = require('megajs')
 const prefix = '.'
 
-const ownerNumber = ['94751150234']
+const ownerNumber = ['94779415698']
 
 //===================SESSION-AUTH============================
 if (!fs.existsSync(__dirname + '/auth_info_baileys/creds.json')) {
@@ -89,7 +87,7 @@ const type = getContentType(mek.message)
 const content = JSON.stringify(mek.message)
 const from = mek.key.remoteJid
 const quoted = type == 'extendedTextMessage' && mek.message.extendedTextMessage.contextInfo != null ? mek.message.extendedTextMessage.contextInfo.quotedMessage || [] : []
-  const body = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text :(type == 'interactiveResponseMessage' ) ? mek.message.interactiveResponseMessage  && mek.message.interactiveResponseMessage.nativeFlowResponseMessage && JSON.parse(mek.message.interactiveResponseMessage.nativeFlowResponseMessage.paramsJson) && JSON.parse(mek.message.interactiveResponseMessage.nativeFlowResponseMessage.paramsJson).id :(type == 'templateButtonReplyMessage' )? mek.message.templateButtonReplyMessage && mek.message.templateButtonReplyMessage.selectedId  : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : ''
+const body = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : ''
 const isCmd = body.startsWith(prefix)
 const command = isCmd ? body.slice(prefix.length).trim().split(' ').shift().toLowerCase() : ''
 const args = body.trim().split(/ +/).slice(1)
@@ -133,78 +131,8 @@ conn.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
                 return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, { quoted: quoted, ...options })
               }
             }
- conn.sendButtonMessage = async (jid, buttons, quoted, opts = {}) => {
-
-                let header;
-                if (opts?.video) {
-                    var video = await prepareWAMessageMedia({
-                        video: {
-                            url: opts && opts.video ? opts.video : ''
-                        }
-                    }, {
-                        upload: conn.waUploadToServer
-                    })
-                    header = {
-                        title: opts && opts.header ? opts.header : '',
-                        hasMediaAttachment: true,
-                        videoMessage: video.videoMessage,
-                    }
-
-                } else if (opts?.image) {
-                    var image = await prepareWAMessageMedia({
-                        image: {
-                            url: opts && opts.image ? opts.image : ''
-                        }
-                    }, {
-                        upload: conn.waUploadToServer
-                    })
-                    header = {
-                        title: opts && opts.header ? opts.header : '',
-                        hasMediaAttachment: true,
-                        imageMessage: image.imageMessage,
-                    }
-
-                } else {
-                    header = {
-                        title: opts && opts.header ? opts.header : '',
-                        hasMediaAttachment: false,
-                    }
-                }
 
 
-                let message = generateWAMessageFromContent(jid, {
-                    viewOnceMessage: {
-                        message: {
-                            messageContextInfo: {
-                                deviceListMetadata: {},
-                                deviceListMetadataVersion: 2,
-                            },
-                            interactiveMessage: {
-                                body: {
-                                    text: opts && opts.body ? opts.body : ''
-                                },
-                                footer: {
-                                    text: opts && opts.footer ? opts.footer : ''
-                                },
-                                header: header,
-                                nativeFlowMessage: {
-                                    buttons: buttons,
-                                    messageParamsJson: ''
-                                }
-                            }
-                        }
-                    }
-                }, {
-                    quoted: quoted
-                })
-                await conn.sendPresenceUpdate('composing', jid)
-                await sleep(1000 * 1);
-                return await conn.relayMessage(jid, message["message"], {
-                    messageId: message.key.id
-                })
-            }
-        
-//==================================plugin map================================
 const events = require('./command')
 const cmdName = isCmd ? body.slice(1).trim().split(" ")[0].toLowerCase() : false;
 if (isCmd) {
