@@ -112,31 +112,6 @@ else sizetoo =  "_This file size is too big_\n​​​​​​​​​​​�
 
 
 
-cmd({
-    pattern: "yts",
-    alias: ["ytsearch"],
-    use: '.yts lelena',
-    react: "🔎",
-    desc: 'Search videos from youtube',
-    category: "search",
-    filename: __filename
-
-},
-
-    async (conn, mek, m, { from, q, reply }) => {
-        try {
-            if (!q) return await reply('*Please enter a query to search!*')
-            var result = await yts(q);
-            var msg = '';
-            result.videos.map((video) => {
-                msg += ' _✅' + video.title + '_\n🔗 ' + video.url + '\n\n'
-            });
-            await conn.sendMessage(from, { text: msg }, { quoted: mek })
-        } catch (e) {
-            reply('*Error !!*')
-            l(e)
-        }
-    });
 
 
 
@@ -155,11 +130,7 @@ cmd({
 
     async (conn, m, mek, { from, q, reply }) => {
         try {
-            if (!q) return await reply('*Please enter a query or a url!*')
-            const url = q.replace(/\?si=[^&]*/, '');
-            var results = await yts(url);
-            var result = results.videos[0]
-            const msg = `hhhh`
+            
 
           const categories = [];
             const categoryMap = new Map();
