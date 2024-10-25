@@ -1,10 +1,8 @@
 const config = require('../config')
-const puppeteer = require('puppeteer');
-const dl = require('@bochilteam/scraper')  
-const yts = require("yt-search")
+
 const l = console.log
 const fs = require('fs-extra')
-const fg = require('api-dylux');
+
 
 
 var videotime = 60000 // 1000 min
