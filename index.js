@@ -131,6 +131,7 @@ conn.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
                 return conn.sendMessage(jid, { audio: await getBuffer(url), caption: caption, mimetype: 'audio/mpeg', ...options }, { quoted: quoted, ...options })
               }
             }
+conn.sendButtonMessage = async (jid, buttons, quoted, opts = {}) => {
 
                 let header;
                 if (opts?.video) {
@@ -200,7 +201,7 @@ conn.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
                     messageId: message.key.id
                 })
             }
-
+                
 const events = require('./command')
 const cmdName = isCmd ? body.slice(1).trim().split(" ")[0].toLowerCase() : false;
 if (isCmd) {
