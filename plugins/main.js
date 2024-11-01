@@ -147,7 +147,8 @@ cmd({
                 }
             }
             
-            let msg 'jhftjfjhfjh',
+            let msg = 'jhftjfjhfjh',
+                
                         let buttons = [
                         
                                                          {
