@@ -146,86 +146,7 @@ cmd({
                     categoryMap.get(category).push(cmd.pattern);
                 }
             }
-            const rows = []
-           for (const category of categories) {
-
-
-                rows.push({
-                    header: "ᴠɪᴅᴇᴏ ᴛʏᴘᴇ",
-                    title: "240P VIDEO",
-                    description: "",
-                    id: ".240p " + result.url
-                
-                }),
-                rows.push({
-                    header: "",
-                    title: "360P VIDEO",
-                    description: "",
-                    id: ".360p " + result.url
-                
-                }),
-                rows.push({
-                    header: "",
-                    title: "480P VIDEO",
-                    description: "",
-                    id: ".480p " + result.url
-                
-                }), 
-                rows.push({
-                    header: "",
-                    title: "720P VIDEO",
-                    description: "",
-                    id: ".720p " + result.url
-                
-                }), 
-                rows.push({
-                    header: "",
-                    title: "1080P VIDEO",
-                    description: "",
-                    id: ".1080p " + result.url
-                
-                })
-	   }
-		
-	const rows2 = []
-           for (const category of categories) {
-                rows2.push({
-                    header: "ᴅᴏᴄᴜᴍᴇɴᴛ ᴛʏᴘᴇ",
-                    title: "240P VIDEO",
-                    description: "",
-                    id: ".24p " + result.url
-                
-                }),
-		rows2.push({
-                    header: "",
-                    title: "360P VIDEO",
-                    description: "",
-                    id: ".36p " + result.url
-                
-                }),
-	        rows2.push({
-                    header: "",
-                    title: "480P VIDEO",
-                    description: "",
-                    id: ".48p " + result.url
-                
-                }),
-		rows2.push({
-                    header: "",
-                    title: "720P VIDEO",
-                    description: "",
-                    id: ".72p " + result.url
-                
-                }),
-                rows2.push({
-                    header: "",
-                    title: "1080P VIDEO",
-                    description: "",
-                    id: ".108p " + result.url
-                
-                })	
-
-           }     
+            
             
                         let buttons = [
                         
@@ -233,33 +154,10 @@ cmd({
                     name: "quick_reply",
                     buttonParamsJson: JSON.stringify({
                         display_text: "ɢᴇᴛ ᴀᴜᴅɪᴏ 🎶",
-                        id: `.song ${q}`
+                        id: `.song`
                     }),
-                }, 
-                {
-                    name: "single_select",
-                    buttonParamsJson: JSON.stringify({
-                        title: 'ᴠɪᴅᴇᴏ ᴛʏᴘᴇ',
-                        sections: [{
-                            title: 'ᴘʟᴇᴀꜱᴇ ꜱᴇʟᴇᴄᴛᴇ ᴀ Qᴜᴀʟɪᴛʏ',
-                            highlight_label: 'ʙʏ ᴅᴀʀᴋ ꜱʜᴀᴅᴏᴡ',
-                            rows: rows
-
-                        }]
-                    }),
-                },
-                {
-                    name: "single_select",
-                    buttonParamsJson: JSON.stringify({
-                        title: 'ᴅᴏᴄᴜᴍᴇɴᴛ ᴛʏᴘᴇ',
-                        sections: [{
-                            title: 'ᴘʟᴇᴀꜱᴇ ꜱᴇʟᴇᴄᴛᴇ ᴀ Qᴜᴀʟɪᴛʏ',
-                            highlight_label: 'ʙʏ ᴅᴀʀᴋ ꜱʜᴀᴅᴏᴡ',
-                            rows: rows2
-
-                        }]
-                    }),
-                }                       
+                }
+               
             ]
             let message = {
                 image: 'https://www.newswire.lk/wp-content/uploads/2022/01/AL-Exam.jpg',
