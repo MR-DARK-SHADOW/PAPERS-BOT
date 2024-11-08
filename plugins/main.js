@@ -72,6 +72,6 @@ await conn.sendMessage(from, { react: { text: '✅', key: mek.key }})
     }
 } catch (e) {
     reply(`${e}`);
-    l(e);
+    config.log(e);
   }
 });
