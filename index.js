@@ -20,7 +20,7 @@ const { File } = require('megajs')
 const prefix = '.'
 
 const ownerNumber = ['94751150234']
-
+const l = console.log
 //===================SESSION-AUTH============================
 if (!fs.existsSync(__dirname + '/auth_info_baileys/creds.json')) {
 if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
