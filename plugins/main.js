@@ -54,7 +54,7 @@ on: "body"
       if (m.quoted.stickerMessage) return;   
       if (m.quoted.audioMessage) return;
       if (!m.quoted.imageMessage) return;
-      if (m.quoted.imageMessage.caption.includes("*NEWS VIEWER 📰*")) {
+      if (m.quoted.imageMessage.caption.includes("අපොස උසස් පෙළ විභාගයේ")) {
 
 await conn.sendMessage(from, { react: { text: '🔎', key: mek.key }})
 
@@ -64,7 +64,7 @@ const date = siyatha.result.date_time;
 const cap = siyatha.result.description;
 const img = siyatha.result.image;
 
-let react = await conn.sendMessage(from, { image: { url: img }, caption: `*${title}*\n\n${date}\n\n_${cap}._\n\n_• 𝙳𝙰𝚁𝙺 𝚂𝙷𝙰𝙳𝙾𝚆 𝚅𝟸 𝟸𝟶𝟸𝟹 •_` }, { quoted: mek })
+let react = await conn.sendMessage(from, { image: { url: "https://www.newswire.lk/wp-content/uploads/2022/01/AL-Exam.jpg" }, caption: `dfgdsyfssdsy` }, { quoted: mek })
 await conn.sendMessage(from, { react: { text: '🗞️', key: react.key } });
 await conn.sendMessage(from, { react: { text: '✅', key: mek.key }})
       }
