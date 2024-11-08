@@ -43,3 +43,29 @@ _🔢 ඔබට අවශ්‍ය විශය ධාරාවට අදාල 
         }
     )
 //=================================================================================================================
+cmd({
+on: "body"
+}, async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+  try {
+    if (body === '1') {
+      if (!m.quoted) return;
+      if (m.quoted.sender !== botNumber2) return;
+      if (m.quoted.videoMessage) return;
+      if (m.quoted.documentMessage) return;
+      if (m.quoted.stickerMessage) return;   
+      if (m.quoted.audioMessage) return;
+      if (!m.quoted.imageMessage) return;
+      if (m.quoted.imageMessage.caption.includes("Hello")) {
+
+await conn.sendMessage(from, { react: { text: '🔎', key: mek.key }})
+
+let react = await conn.sendMessage(from, { image: { url: `https://telegra.ph/file/c495490ca02eb4d086020.jpg` }, caption: `ndndnfn` }, { quoted: mek })
+await conn.sendMessage(from, { react: { text: '🗞️', key: react.key } });
+await conn.sendMessage(from, { react: { text: '✅', key: mek.key }})
+      }
+    }
+} catch (e) {
+    reply(`${e}`);
+    console.log(e);
+  }
+});
