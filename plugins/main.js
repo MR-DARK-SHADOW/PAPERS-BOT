@@ -12,12 +12,9 @@ const {sleep} = require('../lib/functions')
 
 //=================================================================================================================
 cmd({
-    pattern: "news",
-    alias: ["hiru","esana","techsi","technews","derana","siyatha","wabeta"],
-    use: '.news',
+    pattern: "paper",
+    alias: "al",
     react: "📰",
-    desc: "24/7 news viewer",
-    category: "search",
     filename: __filename
         },
 
@@ -26,22 +23,14 @@ cmd({
             var a = '```'
             let buttonMessage = {
                 image: {
-                    url: `https://i.ibb.co/TmM4nPs/20231113-044334.jpg`,
+                    url: `https://www.newswire.lk/wp-content/uploads/2022/01/AL-Exam.jpg`,
                 },  
                 caption: `
-───────────────────
-*📰 DARK SHADOW 2.0*
-        *NEWS VIEWER 📰*
-───────────────────
-${a}1.1 | SIYATHA NEWS${a}
-${a}1.2 | SIRASA NEWS${a}
-${a}1.3 | HIRU NEWS${a}
-${a}1.4 | ESANA NEWS${a}
-${a}1.5 | TECH NEWS${a}
-${a}1.6 | WA BETA${a}
-───────────────────
+*👋🏻 Hello ${pushname}*
 
-_• 𝙳𝙰𝚁𝙺 𝚂𝙷𝙰𝙳𝙾𝚆 𝚅𝟸 𝟸𝟶𝟸𝟹 •_`,            
+──────────────
+☑ අපොස උසස් පෙළ විභාගයේ පසුගිය වසරවලට අදාල ප්‍රශ්න පත්‍ර ඔබට මෙය මගින් බාගත කල හැක
+──────────────`,            
                 headerType: 4,
             };
            const react = await conn.sendMessage(from, buttonMessage, { 
