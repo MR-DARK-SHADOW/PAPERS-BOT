@@ -44,35 +44,39 @@ _🔢 ඔබට අවශ්‍ය විශය ධාරාවට අදාල 
         }
     )
 //=================================================================================================================
-cmd({
-on: "body"
-}, async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-  try {
-    if (body === '1.1') {
-      if (!m.quoted) return;
-      if (m.quoted.sender !== botNumber2) return;
-      if (m.quoted.videoMessage) return;
-      if (m.quoted.documentMessage) return;
-      if (m.quoted.stickerMessage) return;   
-      if (m.quoted.audioMessage) return;
-      if (!m.quoted.imageMessage) return;
-      if (m.quoted.imageMessage.caption.includes("අපොස උසස් පෙළ විභාගයේ")) {
-
-await conn.sendMessage(from, { react: { text: '🔎', key: mek.key }})
-
-let siyatha = await fetchJson(`https://queen-api-production.up.railway.app/api/news/siyatha-news`);
-const title = siyatha.result.title_1;
-const date = siyatha.result.date_time;
-const cap = siyatha.result.description;
-const img = siyatha.result.image;
-
-let react = await conn.sendMessage(from, { image: { url: "https://www.newswire.lk/wp-content/uploads/2022/01/AL-Exam.jpg" }, caption: `dfgdsyfssdsy` }, { quoted: mek })
-await conn.sendMessage(from, { react: { text: '🗞️', key: react.key } });
-await conn.sendMessage(from, { react: { text: '✅', key: mek.key }})
-      }
-    }
-} catch (e) {
-    reply(`${e}`);
-    config.log(e);
+cmd(
+  {
+    on: "body"
+  },
+  async(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
+try{
+if (body === "1") {
+if (!m.quoted) return;
+if(m.quoted.videoMessage) {
+let mcap = `_☑ අපොස උසස් පෙළ විභාගයේ පසුගිය වසරවලට අදාල ප්‍රශ්න පත්‍ර ඔබට මෙය මගින් බාගත කල හැක_`;            
+  const quote = m.quoted.videoMessage.caption;
+   if (quote.includes(mcap)) {
+    var a = '```'
+const downmenu = `
+╭═❨ *ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ* ❩═╮
+┃⚎╭────────────╮
+┃⚎│➠ ᴡᴀᴍᴏᴅ
+┃⚎│➠ ᴀᴘᴋ
+┃⚎│➠ ꜱᴏɴɢ
+┃⚎│➠ ᴠɪᴅᴇᴏ
+┃⚎│➠ ᴍᴇᴅɪᴀꜰɪʀᴇ
+┃⚎│➠ ꜰʙ
+┃⚎│➠ ɪɢ
+┃⚎│➠ ɢᴅʀɪᴠᴇ
+┃⚎│➠ ᴛɪᴋᴛᴏᴋ
+┃⚎╰────────────╯
+╰═══════════════╯
+`;
+    const getq = await conn.sendMessage(m.chat, { image: { url: `https://i.ibb.co/qWQ2Ryh/20231113-091320.jpg` }, caption: downmenu }, { quoted: mek });
+   return await conn.sendMessage(m.chat, { react: { text: '⬇️', key: getq.key } });
   }
-});
+}
+}
+}catch(e){
+}
+})
