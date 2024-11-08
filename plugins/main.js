@@ -17,7 +17,8 @@ cmd({
                 image: {
                     url: `https://www.newswire.lk/wp-content/uploads/2022/01/AL-Exam.jpg`,
                 },  
-                caption: `*👋🏻 Hello ${pushname}*
+                caption: `───────────────────
+*👋🏻 Hello ${pushname}*
 ───────────────────
 _☑ අපොස උසස් පෙළ විභාගයේ පසුගිය වසරවලට අදාල ප්‍රශ්න පත්‍ර ඔබට මෙය මගින් බාගත කල හැක_
 ────────────────────
