@@ -11,9 +11,8 @@ cmd({
     filename: __filename
         },
 
-        async(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
-
-            var a = '```'
+          async (conn, mek, m, { from, q, reply }) => {
+              var a = '```'
             let buttonMessage = {
                 image: {
                     url: `https://www.newswire.lk/wp-content/uploads/2022/01/AL-Exam.jpg`,
@@ -48,8 +47,8 @@ cmd(
   {
     on: "body"
   },
-  async(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
-try{
+   async (conn, mek, m, { from, q, reply }) => {
+       try{
 if (body === "1") {
 if (!m.quoted) return;
 if(m.quoted.videoMessage) {
