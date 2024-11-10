@@ -28,11 +28,9 @@ _🔢 ඔබට අවශ්‍ය විශය ධාරාවට අදාල 
 
 *⭕ 2 ජීව විද්‍යා විෂය ධාරාව*
 
-*⭕ 3 වාණිජ විෂය ධාරාව*
+*⭕ 3 තාක්ෂණ විෂය ධාරාව*
 
-*⭕ 4 කලා විෂය ධාරාව*
-
-*⭕ 5 තාක්ෂණ විෂය ධාරාව*`,            
+*⭕ 4 වාණිජ විෂය ධාරාව* `,            
                 headerType: 4,
             };
            const react = await conn.sendMessage(from, buttonMessage, { 
@@ -48,13 +46,6 @@ on: "body"
 }, async (conn, mek, m, { from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
   try {
     if (body === '1') {
-      if (!m.quoted) return;
-      if (m.quoted.sender !== botNumber2) return;
-      if (m.quoted.videoMessage) return;
-      if (m.quoted.documentMessage) return;
-      if (m.quoted.stickerMessage) return;   
-      if (m.quoted.audioMessage) return;
-      if (!m.quoted.imageMessage) return;
       if (m.quoted.imageMessage.caption.includes("Hello")) {
 
 await conn.sendMessage(from, { react: { text: '🔎', key: mek.key }})
