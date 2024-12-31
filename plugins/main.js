@@ -6,7 +6,7 @@ const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, 
 //=================================================================================================================
 cmd({
     pattern: "paper",
-    alias: "al",
+    alias: "ol",
     react: "📰",
     filename: __filename
         },
