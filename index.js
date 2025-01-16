@@ -131,7 +131,76 @@ conn.sendFileUrl = async (jid, url, caption, quoted, options = {}) => {
               }
             }
 
+ conn.sendButtonMessage = async (jid, buttons, quoted, opts = {}) => {
 
+                let header;
+                if (opts?.video) {
+                    var video = await prepareWAMessageMedia({
+                        video: {
+                            url: opts && opts.video ? opts.video : ''
+                        }
+                    }, {
+                        upload: conn.waUploadToServer
+                    })
+                    header = {
+                        title: opts && opts.header ? opts.header : '',
+                        hasMediaAttachment: true,
+                        videoMessage: video.videoMessage,
+                    }
+
+                } else if (opts?.image) {
+                    var image = await prepareWAMessageMedia({
+                        image: {
+                            url: opts && opts.image ? opts.image : ''
+                        }
+                    }, {
+                        upload: conn.waUploadToServer
+                    })
+                    header = {
+                        title: opts && opts.header ? opts.header : '',
+                        hasMediaAttachment: true,
+                        imageMessage: image.imageMessage,
+                    }
+
+                } else {
+                    header = {
+                        title: opts && opts.header ? opts.header : '',
+                        hasMediaAttachment: false,
+                    }
+                }
+
+
+                let message = generateWAMessageFromContent(jid, {
+                    viewOnceMessage: {
+                        message: {
+                            messageContextInfo: {
+                                deviceListMetadata: {},
+                                deviceListMetadataVersion: 2,
+                            },
+                            interactiveMessage: {
+                                body: {
+                                    text: opts && opts.body ? opts.body : ''
+                                },
+                                footer: {
+                                    text: opts && opts.footer ? opts.footer : ''
+                                },
+                                header: header,
+                                nativeFlowMessage: {
+                                    buttons: buttons,
+                                    messageParamsJson: ''
+                                }
+                            }
+                        }
+                    }
+                }, {
+                    quoted: quoted
+                })
+                await conn.sendPresenceUpdate('composing', jid)
+                await sleep(1000 * 1);
+                return await conn.relayMessage(jid, message["message"], {
+                    messageId: message.key.id
+                })
+            }
 const events = require('./command')
 const cmdName = isCmd ? body.slice(1).trim().split(" ")[0].toLowerCase() : false;
 if (isCmd) {
