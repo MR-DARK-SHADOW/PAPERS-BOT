@@ -3,7 +3,7 @@ const os = require('os')
 const {
     cmd,
     commands
-} = require('../plugin')
+} = require('../command')
 const {
     getBuffer,
     getGroupAdmins,
