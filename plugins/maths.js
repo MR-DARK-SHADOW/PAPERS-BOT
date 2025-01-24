@@ -19,8 +19,8 @@ on: "body"
       if (m.quoted.imageMessage.caption.includes("⭕ *ගණිතය*")) {
 
 await conn.sendMessage(from, { react: { text: '🔎', key: mek.key }})
-let react = await conn.sendMessage(from, { document: { url: `https://github.com/MR-DARK-SHADOW/PAPERS-DB/blob/main/Maths/2016-OL-Maths-Past-Paper-and-Answers-Sinhala-Medium.pdf?raw=true` }, mimetype: "application/pdf", fileName: `ගණිතය_2016.pdf`, caption: `> *Have a nice day* 🌝❤️\n\n_© 𝙿𝙾𝚆𝙴𝚁𝙳 𝙱𝚈 𝙳𝙰𝚁𝙺 𝚂𝙷𝙰𝙳𝙾𝚆_` }, { quoted: mek  })
-let reactt = await conn.sendMessage(from, { document: { url: `https://github.com/MR-DARK-SHADOW/PAPERS-DB/blob/main/Maths/2016-OL-Maths-Past-Paper-and-Answers-Sinhala-Medium.pdf?raw=true` }, mimetype: "application/pdf", fileName: `ගණිතය_පිළිතුරු_2016.pdf`, caption: `> *Have a nice day* 🌝❤️\n\n_© 𝙿𝙾𝚆𝙴𝚁𝙳 𝙱𝚈 𝙳𝙰𝚁𝙺 𝚂𝙷𝙰𝙳𝙾𝚆_` }, { quoted: mek  })
+let react = await conn.sendMessage(from, { document: { url: `https://github.com/MR-DARK-SHADOW/PAPERS-DB/blob/main/Maths/Papers/23%20Maths%20%202016%20S.pdf?raw=true` }, mimetype: "application/pdf", fileName: `ගණිතය_2016.pdf`, caption: `> *Have a nice day* 🌝❤️\n\n_© 𝙿𝙾𝚆𝙴𝚁𝙳 𝙱𝚈 𝙳𝙰𝚁𝙺 𝚂𝙷𝙰𝙳𝙾𝚆_` }, { quoted: mek  })
+let reactt = await conn.sendMessage(from, { document: { url: `https://github.com/MR-DARK-SHADOW/PAPERS-DB/blob/main/Maths/Papers/23%20Maths%20%202016%20S.pdf?raw=true` }, mimetype: "application/pdf", fileName: `ගණිතය_පිළිතුරු_2016.pdf`, caption: `> *Have a nice day* 🌝❤️\n\n_© 𝙿𝙾𝚆𝙴𝚁𝙳 𝙱𝚈 𝙳𝙰𝚁𝙺 𝚂𝙷𝙰𝙳𝙾𝚆_` }, { quoted: mek  })
 await conn.sendMessage(from, { react: { text: '🗞️', key: react.key } });
 await conn.sendMessage(from, { react: { text: '🗞️', key: reactt.key } });
 await conn.sendMessage(from, { react: { text: '✅', key: mek.key }})
